@@ -7,15 +7,16 @@
 
 import UIKit
 
-public class AppData{
-    static var words : [String] = []
-}
+
 
 class ViewController: UIViewController {
     var guess = ""
     var word = "pony"
     var incorrectGuesses = 0
     var greg : [UIImage] = []
+    var gameswon = 0
+    
+    var words = ["a","pony", "bear", "cat", "computer", "jungle", "freak", "idiot", "loser","oblique" ]
     
     @IBOutlet weak var guessOut: UILabel!
     
@@ -55,6 +56,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var rightArmOut: UIImageView!
     
   
+    @IBOutlet weak var winLoseOut: UILabel!
+    @IBOutlet weak var reloadOut: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,23 +76,53 @@ class ViewController: UIViewController {
         leftArmOut.isHidden = true
         leftLegOut.isHidden = true
         rightLegOut.isHidden = true
+        reloadOut.isHidden = true
        
-        for x in 0..<word.count {
+        for x in 0..<words[gameswon].count {
             guess+="_ "
            
             }
         guessOut.text = guess
     }
-    func plEASE( ) {
+    
+    
+    func win(){
+        if (guess == words[gameswon]){
+            gameswon+=1
+            winLoseOut.text = "you win!"
+            reloadOut.isHidden = false
+            
+        }
         
     }
     
+    @IBAction func reloadAct(_ sender: UIButton) {
+        guess=""
+        for x in 0..<words[gameswon].count {
+            guess+="_ "
+           
+            }
+        winLoseOut.text = ""
+        guessOut.text = guess
+        
+        headOut.isHidden = true
+        bodyOut.isHidden = true
+        rightArmOut.isHidden = true
+        leftArmOut.isHidden = true
+        leftLegOut.isHidden = true
+        rightLegOut.isHidden = true
+        reloadOut.isHidden = true
+        
+    }
+    
+    
     @IBAction func aAct(_ sender: UIButton) {
-        var count = 0
+       var count = 0
         guess = ""
-        for x in 0..<word.count {
-            var help = word.index(word.startIndex, offsetBy: x)
-            if (word[help] == "a"){
+        for x in 0..<words[gameswon].count {
+          var thisWord = words[gameswon]
+            var help = words[gameswon].index(words[gameswon].startIndex, offsetBy: x)
+            if (thisWord[help] == "a"){
                 guess+="a"
                 count+=1
             }
@@ -103,23 +136,31 @@ class ViewController: UIViewController {
             incorrectGuesses+=1
             if (incorrectGuesses==1){
                 headOut.isHidden = false
+                winLoseOut.text = "incorrect guess"
             }
             else if (incorrectGuesses==2){
                 bodyOut.isHidden = false
+                winLoseOut.text = "incorrect guess"
             }
             else if (incorrectGuesses == 3){
                 leftArmOut.isHidden = false
+                winLoseOut.text = "incorrect guess"
             }
             else if (incorrectGuesses == 4){
                 rightArmOut.isHidden = false
+                winLoseOut.text = "incorrect guess"
             }
             else if (incorrectGuesses == 5){
                 rightLegOut.isHidden = false
+                winLoseOut.text = "incorrect guess"
             }
             else if (incorrectGuesses == 6){
                 leftLegOut.isHidden = false
-                guessOut.text = word
+                guessOut.text = words[gameswon]
                 guessOut.textColor = UIColor.red
+                gameswon+=1
+                winLoseOut.text = "you lose"
+                reloadOut.isHidden = false
             }
             else {
                 guessOut.text = "game over idiot"
@@ -129,7 +170,129 @@ class ViewController: UIViewController {
         }
         aOut.isEnabled = false
         aOut.tintColor = UIColor.red
+        win()
     }
+  
+    
+    @IBAction func bAct(_ sender: UIButton) {
+        var count = 0
+         guess = ""
+         for x in 0..<words[gameswon].count {
+           var thisWord = words[gameswon]
+             var help = words[gameswon].index(words[gameswon].startIndex, offsetBy: x)
+             if (thisWord[help] == "b"){
+                 guess+="b"
+                 count+=1
+             }
+             else{
+                 
+                 guess+="_ "
+             }
+         }
+         guessOut.text = guess
+         if (count<1){
+             incorrectGuesses+=1
+             if (incorrectGuesses==1){
+                 headOut.isHidden = false
+                 winLoseOut.text = "incorrect guess"
+             }
+             else if (incorrectGuesses==2){
+                 bodyOut.isHidden = false
+                 winLoseOut.text = "incorrect guess"
+             }
+             else if (incorrectGuesses == 3){
+                 leftArmOut.isHidden = false
+                 winLoseOut.text = "incorrect guess"
+             }
+             else if (incorrectGuesses == 4){
+                 rightArmOut.isHidden = false
+                 winLoseOut.text = "incorrect guess"
+             }
+             else if (incorrectGuesses == 5){
+                 rightLegOut.isHidden = false
+                 winLoseOut.text = "incorrect guess"
+             }
+             else if (incorrectGuesses == 6){
+                 leftLegOut.isHidden = false
+                 guessOut.text = words[gameswon]
+                 guessOut.textColor = UIColor.red
+                 gameswon+=1
+                 winLoseOut.text = "you lose"
+                 reloadOut.isHidden = false
+             }
+             else {
+                 guessOut.text = "game over idiot"
+                 
+             }
+                         
+         }
+         bOut.isEnabled = false
+         bOut.tintColor = UIColor.red
+         win()
+     }
+     
+    
+    @IBAction func cAct(_ sender: UIButton) {
+        var count = 0
+         guess = ""
+         for x in 0..<words[gameswon].count {
+           var thisWord = words[gameswon]
+             var help = words[gameswon].index(words[gameswon].startIndex, offsetBy: x)
+             if (thisWord[help] == "c"){
+                 guess+="c"
+                 count+=1
+             }
+             else{
+                 
+                 guess+="_ "
+             }
+         }
+         guessOut.text = guess
+         if (count<1){
+             incorrectGuesses+=1
+             if (incorrectGuesses==1){
+                 headOut.isHidden = false
+                 winLoseOut.text = "incorrect guess"
+             }
+             else if (incorrectGuesses==2){
+                 bodyOut.isHidden = false
+                 winLoseOut.text = "incorrect guess"
+             }
+             else if (incorrectGuesses == 3){
+                 leftArmOut.isHidden = false
+                 winLoseOut.text = "incorrect guess"
+             }
+             else if (incorrectGuesses == 4){
+                 rightArmOut.isHidden = false
+                 winLoseOut.text = "incorrect guess"
+             }
+             else if (incorrectGuesses == 5){
+                 rightLegOut.isHidden = false
+                 winLoseOut.text = "incorrect guess"
+             }
+             else if (incorrectGuesses == 6){
+                 leftLegOut.isHidden = false
+                 guessOut.text = words[gameswon]
+                 guessOut.textColor = UIColor.red
+                 gameswon+=1
+                 winLoseOut.text = "you lose"
+                 reloadOut.isHidden = false
+             }
+             else {
+                 guessOut.text = "game over idiot"
+                 
+             }
+                         
+         }
+         cOut.isEnabled = false
+         cOut.tintColor = UIColor.red
+         win()
+     }
+     
+        
+    
     
 }
+
+
 

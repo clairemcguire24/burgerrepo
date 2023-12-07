@@ -34,11 +34,17 @@
                                                 <rect key="frame" x="57" y="0.0" width="51.666666666666657" height="61"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="b"/>
+                                                <connections>
+                                                    <action selector="bAct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CX9-ch-SHf"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xhn-NI-aCX">
                                                 <rect key="frame" x="113.66666666666669" y="0.0" width="52" height="61"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="c"/>
+                                                <connections>
+                                                    <action selector="cAct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="glQ-u5-oal"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DlY-PL-5RK">
                                                 <rect key="frame" x="170.66666666666666" y="0.0" width="51.666666666666657" height="61"/>
@@ -205,6 +211,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="silly" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfv-VM-NxQ">
+                                <rect key="frame" x="0.0" y="349" width="246" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRA-gw-vKL">
+                                <rect key="frame" x="96" y="432" width="47" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system"/>
+                                <connections>
+                                    <action selector="reloadAct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nyg-1g-Fue"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -239,6 +261,7 @@
                         <outlet property="pOut" destination="5A6-oE-8Bg" id="uNB-qU-8Ep"/>
                         <outlet property="qOut" destination="jTI-f0-H1G" id="NZz-Lv-2Mn"/>
                         <outlet property="rOut" destination="3gE-U4-eOA" id="AYS-x2-aGy"/>
+                        <outlet property="reloadOut" destination="rRA-gw-vKL" id="BaE-iU-dIw"/>
                         <outlet property="rightArmOut" destination="PyZ-u5-0QK" id="xqh-Tm-XpP"/>
                         <outlet property="rightLegOut" destination="aj0-ZJ-lNj" id="fdt-Wi-uQK"/>
                         <outlet property="sOut" destination="Q6M-ge-dqf" id="Anh-dU-cfo"/>
@@ -246,6 +269,7 @@
                         <outlet property="uOut" destination="lrq-Ri-eNI" id="wCe-wo-vdj"/>
                         <outlet property="vOut" destination="g4c-rE-Zdf" id="Feb-sw-qc6"/>
                         <outlet property="wOut" destination="GKm-Ob-WNd" id="WWS-ge-aiV"/>
+                        <outlet property="winLoseOut" destination="Mfv-VM-NxQ" id="eBF-MY-aHb"/>
                         <outlet property="xOut" destination="2Mk-bZ-zij" id="Eig-L5-aB9"/>
                         <outlet property="yOut" destination="WLx-S8-BNv" id="hzg-cE-gjp"/>
                         <outlet property="zOut" destination="UUi-vC-TYD" id="wHC-xZ-gYh"/>
@@ -257,6 +281,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
         <image name="circle" catalog="system" width="128" height="123"/>
         <image name="line.diagonal" catalog="system" width="128" height="113"/>
         <image name="poweron" catalog="system" width="40" height="128"/>
