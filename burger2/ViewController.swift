@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     var gameswon = 0
     
     var words = ["a","pony", "bear", "cat", "computer", "jungle", "freak", "idiot", "loser","oblique" ]
+    var correct = [Int]()
     
     @IBOutlet weak var guessOut: UILabel!
     
@@ -56,6 +57,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var rightArmOut: UIImageView!
     
   
+    
     @IBOutlet weak var winLoseOut: UILabel!
     @IBOutlet weak var reloadOut: UIButton!
     
@@ -63,12 +65,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
        
-        greg.append(headOut.image!)
-        greg.append(bodyOut.image!)
-        greg.append(rightArmOut.image!)
-        greg.append(leftArmOut.image!)
-        greg.append(rightLegOut.image!)
-        greg.append(leftLegOut.image!)
+//        greg.append(headOut.image!)
+//        greg.append(bodyOut.image!)
+//        greg.append(rightArmOut.image!)
+//        greg.append(leftArmOut.image!)
+//        greg.append(rightLegOut.image!)
+//        greg.append(leftLegOut.image!)
         
         headOut.isHidden = true
         bodyOut.isHidden = true
@@ -104,6 +106,8 @@ class ViewController: UIViewController {
             }
         winLoseOut.text = ""
         guessOut.text = guess
+        incorrectGuesses = 0
+        guessOut.textColor = UIColor.black
         
         headOut.isHidden = true
         bodyOut.isHidden = true
@@ -113,26 +117,72 @@ class ViewController: UIViewController {
         rightLegOut.isHidden = true
         reloadOut.isHidden = true
         
+        aOut.isEnabled = true
+        bOut.isEnabled = true
+        cOut.isEnabled = true
+        dOut.isEnabled = true
+        eOut.isEnabled = true
+        fOut.isEnabled = true
+        gOut.isEnabled = true
+        hOut.isEnabled = true
+        iOut.isEnabled = true
+        jOut.isEnabled = true
+        kOut.isEnabled = true
+        lOut.isEnabled = true
+        mOut.isEnabled = true
+        nOut.isEnabled = true
+        oOut.isEnabled = true
+        pOut.isEnabled = true
+        qOut.isEnabled = true
+        rOut.isEnabled = true
+        sOut.isEnabled = true
+        tOut.isEnabled = true
+        uOut.isEnabled = true
+        vOut.isEnabled = true
+        wOut.isEnabled = true
+        xOut.isEnabled = true
+        yOut.isEnabled = true
+        zOut.isEnabled = true
+        //god i love coding
+        correct = [Int]()
     }
     
-    
-    @IBAction func aAct(_ sender: UIButton) {
-       var count = 0
+    func checkLetters(letter : Character){
         guess = ""
-        for x in 0..<words[gameswon].count {
-          var thisWord = words[gameswon]
-            var help = words[gameswon].index(words[gameswon].startIndex, offsetBy: x)
-            if (thisWord[help] == "a"){
-                guess+="a"
-                count+=1
-            }
-            else{
-                
-                guess+="_ "
-            }
+//
+ var gotLetter = false
+ var thisWord = words[gameswon]
+//        for i in thisWord.indices{
+//            if (thisWord[i] == letter){
+//                guess+=String(letter)
+//                gotLetter = true
+//            }
+//            else {
+//                guess+="_"
+//            }
+//        }
+     
+        for x in 0..<thisWord.count{
+            var help = words[gameswon].index(words[gameswon].startIndex , offsetBy: x)
+            thisWord[help]
+            if (thisWord[help] == letter){
+                        guess+=String(letter)
+                        gotLetter = true
+                        correct.append(x)
+                     }
+                       else {
+                          guess+="_"
+                      }
         }
+        
+        var temp = Array(guess)
+        for c in correct {
+            temp[c] = thisWord[words[gameswon].index(words[gameswon].startIndex , offsetBy: c)]
+        }
+        guess = String(temp)
         guessOut.text = guess
-        if (count<1){
+        
+        if (!gotLetter){
             incorrectGuesses+=1
             if (incorrectGuesses==1){
                 headOut.isHidden = false
@@ -168,130 +218,182 @@ class ViewController: UIViewController {
             }
                         
         }
+        
+    }
+    
+   
+    
+    @IBAction func aAct(_ sender: UIButton) {
+        checkLetters(letter: "a")
+        
         aOut.isEnabled = false
-        aOut.tintColor = UIColor.red
         win()
     }
   
     
     @IBAction func bAct(_ sender: UIButton) {
-        var count = 0
-         guess = ""
-         for x in 0..<words[gameswon].count {
-           var thisWord = words[gameswon]
-             var help = words[gameswon].index(words[gameswon].startIndex, offsetBy: x)
-             if (thisWord[help] == "b"){
-                 guess+="b"
-                 count+=1
-             }
-             else{
-                 
-                 guess+="_ "
-             }
-         }
-         guessOut.text = guess
-         if (count<1){
-             incorrectGuesses+=1
-             if (incorrectGuesses==1){
-                 headOut.isHidden = false
-                 winLoseOut.text = "incorrect guess"
-             }
-             else if (incorrectGuesses==2){
-                 bodyOut.isHidden = false
-                 winLoseOut.text = "incorrect guess"
-             }
-             else if (incorrectGuesses == 3){
-                 leftArmOut.isHidden = false
-                 winLoseOut.text = "incorrect guess"
-             }
-             else if (incorrectGuesses == 4){
-                 rightArmOut.isHidden = false
-                 winLoseOut.text = "incorrect guess"
-             }
-             else if (incorrectGuesses == 5){
-                 rightLegOut.isHidden = false
-                 winLoseOut.text = "incorrect guess"
-             }
-             else if (incorrectGuesses == 6){
-                 leftLegOut.isHidden = false
-                 guessOut.text = words[gameswon]
-                 guessOut.textColor = UIColor.red
-                 gameswon+=1
-                 winLoseOut.text = "you lose"
-                 reloadOut.isHidden = false
-             }
-             else {
-                 guessOut.text = "game over idiot"
-                 
-             }
-                         
-         }
+        checkLetters(letter: "b")
          bOut.isEnabled = false
-         bOut.tintColor = UIColor.red
+        //guessOut.text = guess
          win()
+        
      }
      
     
     @IBAction func cAct(_ sender: UIButton) {
-        var count = 0
-         guess = ""
-         for x in 0..<words[gameswon].count {
-           var thisWord = words[gameswon]
-             var help = words[gameswon].index(words[gameswon].startIndex, offsetBy: x)
-             if (thisWord[help] == "c"){
-                 guess+="c"
-                 count+=1
-             }
-             else{
-                 
-                 guess+="_ "
-             }
-         }
-         guessOut.text = guess
-         if (count<1){
-             incorrectGuesses+=1
-             if (incorrectGuesses==1){
-                 headOut.isHidden = false
-                 winLoseOut.text = "incorrect guess"
-             }
-             else if (incorrectGuesses==2){
-                 bodyOut.isHidden = false
-                 winLoseOut.text = "incorrect guess"
-             }
-             else if (incorrectGuesses == 3){
-                 leftArmOut.isHidden = false
-                 winLoseOut.text = "incorrect guess"
-             }
-             else if (incorrectGuesses == 4){
-                 rightArmOut.isHidden = false
-                 winLoseOut.text = "incorrect guess"
-             }
-             else if (incorrectGuesses == 5){
-                 rightLegOut.isHidden = false
-                 winLoseOut.text = "incorrect guess"
-             }
-             else if (incorrectGuesses == 6){
-                 leftLegOut.isHidden = false
-                 guessOut.text = words[gameswon]
-                 guessOut.textColor = UIColor.red
-                 gameswon+=1
-                 winLoseOut.text = "you lose"
-                 reloadOut.isHidden = false
-             }
-             else {
-                 guessOut.text = "game over idiot"
-                 
-             }
-                         
-         }
+        checkLetters(letter: "c")
          cOut.isEnabled = false
-         cOut.tintColor = UIColor.red
+       // guessOut.text = guess
          win()
      }
      
         
     
+    @IBAction func dAct(_ sender: UIButton) {
+        checkLetters(letter: "d")
+         dOut.isEnabled = false
+      //  guessOut.text = guess
+         win()
+    }
     
+    
+    @IBAction func eOut(_ sender: UIButton) {
+        checkLetters(letter: "e")
+         eOut.isEnabled = false
+       // guessOut.text = guess
+         win()
+    }
+    
+    
+    @IBAction func fAct(_ sender: UIButton) {
+        checkLetters(letter: "f")
+         fOut.isEnabled = false
+         win()
+    }
+    
+    
+    @IBAction func gAct(_ sender: UIButton) {
+        checkLetters(letter: "g")
+         gOut.isEnabled = false
+         win()
+        
+    }
+    
+    @IBAction func hAct(_ sender: UIButton) {
+        checkLetters(letter: "h")
+         hOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func iAct(_ sender: UIButton) {
+        checkLetters(letter: "i")
+         iOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func jOut(_ sender: UIButton) {
+        checkLetters(letter: "j")
+         jOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func kOut(_ sender: UIButton) {
+        checkLetters(letter: "k")
+         kOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func lAct(_ sender: UIButton) {
+        checkLetters(letter: "l")
+         lOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func mAct(_ sender: UIButton) {
+        checkLetters(letter: "m")
+         mOut.isEnabled = false
+         win()
+        
+    }
+    
+    
+    @IBAction func nAct(_ sender: UIButton) {
+        checkLetters(letter: "n")
+         nOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func oAct(_ sender: UIButton) {
+        checkLetters(letter: "o")
+         oOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func pAct(_ sender: UIButton) {
+        checkLetters(letter: "p")
+         pOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func qAct(_ sender: UIButton) {
+        checkLetters(letter: "q")
+         qOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func rAct(_ sender: UIButton) {
+        checkLetters(letter: "r")
+         rOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func sAct(_ sender: UIButton) {
+        checkLetters(letter: "s")
+         sOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func tAct(_ sender: UIButton) {
+        checkLetters(letter: "t")
+         tOut.isEnabled = false
+         win()
+    }
+   
+    @IBAction func uAct(_ sender: UIButton) {
+        checkLetters(letter: "u")
+         uOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func vAct(_ sender: UIButton) {
+        checkLetters(letter: "v")
+         vOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func wAct(_ sender: UIButton) {
+        checkLetters(letter: "w")
+         wOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func xAct(_ sender: UIButton) {
+        checkLetters(letter: "x")
+         xOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func yOut(_ sender: UIButton) {
+        checkLetters(letter: "y")
+         yOut.isEnabled = false
+         win()
+    }
+    
+    @IBAction func zAct(_ sender: UIButton) {
+        checkLetters(letter: "z")
+         zOut.isEnabled = false
+         win()
+    }
 }
 
 
