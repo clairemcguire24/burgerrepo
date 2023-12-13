@@ -7,20 +7,33 @@
 
 import UIKit
 
-
+class AppData{
+    static var words = [
+        ["compsci","pony","lit","fire", "mid", "cazy"],
+        ["hard", "computer", "jungle",  "idiot", "loser","oblique"],
+        ["christmas","stockings","reindeer","mistletoe", "snowflake", "gingerbread"]
+    ]
+    static var gameswon = 0
+    static var gamesplayed = 0
+   static var gameslost = 0
+    static var currentLevel = 0
+}
 
 class ViewController: UIViewController {
     var guess = ""
-    var word = "pony"
+    //var word = "pony"
     var incorrectGuesses = 0
     var greg : [UIImage] = []
-    var gameswon = 0
-    
-    var words = ["a","pony", "bear", "cat", "computer", "jungle", "freak", "idiot", "loser","oblique" ]
+   var viewCount = 0
+   
+
     var correct = [Int]()
+    let defaults = UserDefaults.standard
     
     @IBOutlet weak var guessOut: UILabel!
     
+    @IBOutlet weak var winLabel: UILabel!
+    @IBOutlet weak var lossLable: UILabel!
     
     @IBOutlet weak var aOut: UIButton!
     @IBOutlet weak var bOut: UIButton!
@@ -57,6 +70,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var rightArmOut: UIImageView!
     
   
+    @IBOutlet weak var levelsOut: UIButton!
     
     @IBOutlet weak var winLoseOut: UILabel!
     @IBOutlet weak var reloadOut: UIButton!
@@ -64,13 +78,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-       
-//        greg.append(headOut.image!)
-//        greg.append(bodyOut.image!)
-//        greg.append(rightArmOut.image!)
-//        greg.append(leftArmOut.image!)
-//        greg.append(rightLegOut.image!)
-//        greg.append(leftLegOut.image!)
+       // AppData.gamesplayed+=1
+        viewCount+=1
+        
+        levelsOut.isEnabled = false
+        if (AppData.gamesplayed > AppData.words.count/2){
+            levelsOut.isEnabled = true
+        }
+        lossLable.text = "losses: \(AppData.gameslost)"
+        winLabel.text = "wins: \(AppData.gamesplayed)"
         
         headOut.isHidden = true
         bodyOut.isHidden = true
@@ -79,20 +95,41 @@ class ViewController: UIViewController {
         leftLegOut.isHidden = true
         rightLegOut.isHidden = true
         reloadOut.isHidden = true
+        
+        AppData.gameswon = defaults.integer(forKey:"thePlace")
+        AppData.gamesplayed = defaults.integer(forKey: "theWins")
+        AppData.gameslost = defaults.integer(forKey: "theLosses")
        
-        for x in 0..<words[gameswon].count {
+        for x in 0..<AppData.words[AppData.currentLevel][AppData.gameswon].count {
             guess+="_ "
            
             }
         guessOut.text = guess
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        if viewCount<1{
+            for x in 0..<AppData.words[AppData.currentLevel][AppData.gameswon].count {
+                guess+="_ "
+                
+            }
+            guessOut.text = guess
+        }
+        
+    }
     func win(){
-        if (guess == words[gameswon]){
-            gameswon+=1
+        if (guess == AppData.words[AppData.currentLevel][AppData.gameswon]){
+            AppData.gameswon+=1
             winLoseOut.text = "you win!"
             reloadOut.isHidden = false
+            AppData.gamesplayed+=1
+            winLabel.text = "wins: \(AppData.gamesplayed)"
+            defaults.set(AppData.gamesplayed, forKey: "theWins")
+            disableButtons()
+            if (AppData.gamesplayed > AppData.words.count/2){
+                levelsOut.isEnabled = true
+            }
+           
             
         }
         
@@ -100,7 +137,15 @@ class ViewController: UIViewController {
     
     @IBAction func reloadAct(_ sender: UIButton) {
         guess=""
-        for x in 0..<words[gameswon].count {
+        if (AppData.gameswon == AppData.words.count){
+            AppData.gameswon = 0
+            AppData.gameslost = 0
+            AppData.gamesplayed = 0
+            defaults.set(AppData.gameswon, forKey: "thePlace")
+            defaults.set(AppData.gamesplayed, forKey: "theWins")
+            defaults.set(AppData.gameslost, forKey: "theLosses")
+        }
+        for x in 0..<AppData.words[AppData.currentLevel][AppData.gameswon].count {
             guess+="_ "
            
             }
@@ -145,25 +190,52 @@ class ViewController: UIViewController {
         zOut.isEnabled = true
         //god i love coding
         correct = [Int]()
+        defaults.set(AppData.gameswon, forKey: "thePlace")
+        
+     
+        
     }
+    
+    func disableButtons(){
+        aOut.isEnabled = false
+        bOut.isEnabled = false
+        cOut.isEnabled = false
+        dOut.isEnabled = false
+        eOut.isEnabled = false
+        fOut.isEnabled = false
+        gOut.isEnabled = false
+        hOut.isEnabled = false
+        iOut.isEnabled = false
+        jOut.isEnabled = false
+        kOut.isEnabled = false
+        lOut.isEnabled = false
+        mOut.isEnabled = false
+        nOut.isEnabled = false
+        oOut.isEnabled = false
+        pOut.isEnabled = false
+        qOut.isEnabled = false
+        rOut.isEnabled = false
+        sOut.isEnabled = false
+        tOut.isEnabled = false
+        uOut.isEnabled = false
+        vOut.isEnabled = false
+        wOut.isEnabled = false
+        xOut.isEnabled = false
+        yOut.isEnabled = false
+        zOut.isEnabled = false
+    }
+    
+    
     
     func checkLetters(letter : Character){
         guess = ""
 //
  var gotLetter = false
- var thisWord = words[gameswon]
-//        for i in thisWord.indices{
-//            if (thisWord[i] == letter){
-//                guess+=String(letter)
-//                gotLetter = true
-//            }
-//            else {
-//                guess+="_"
-//            }
-//        }
+        var thisWord = AppData.words[AppData.currentLevel][AppData.gameswon]
+
      
         for x in 0..<thisWord.count{
-            var help = words[gameswon].index(words[gameswon].startIndex , offsetBy: x)
+            var help = AppData.words[AppData.currentLevel][AppData.gameswon].index(AppData.words[AppData.currentLevel][AppData.gameswon].startIndex , offsetBy: x)
             thisWord[help]
             if (thisWord[help] == letter){
                         guess+=String(letter)
@@ -177,7 +249,7 @@ class ViewController: UIViewController {
         
         var temp = Array(guess)
         for c in correct {
-            temp[c] = thisWord[words[gameswon].index(words[gameswon].startIndex , offsetBy: c)]
+            temp[c] = thisWord[AppData.words[AppData.currentLevel][AppData.gameswon].index(AppData.words[AppData.currentLevel][AppData.gameswon].startIndex , offsetBy: c)]
         }
         guess = String(temp)
         guessOut.text = guess
@@ -206,11 +278,15 @@ class ViewController: UIViewController {
             }
             else if (incorrectGuesses == 6){
                 leftLegOut.isHidden = false
-                guessOut.text = words[gameswon]
+                guessOut.text = AppData.words[AppData.currentLevel][AppData.gameswon]
                 guessOut.textColor = UIColor.red
-                gameswon+=1
+                AppData.gameswon+=1
                 winLoseOut.text = "you lose"
+                disableButtons()
                 reloadOut.isHidden = false
+                AppData.gameslost+=1
+                lossLable.text = "losses: \(AppData.gameslost)"
+                defaults.set(AppData.gameslost, forKey: "theLosses")
             }
             else {
                 guessOut.text = "game over idiot"

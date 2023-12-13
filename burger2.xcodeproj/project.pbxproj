@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A135FB232B2A058B006FA8B9 /* CazyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135FB222B2A058B006FA8B9 /* CazyCell.swift */; };
 		A18486502B1F7AB600DB91CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A184864F2B1F7AB600DB91CD /* AppDelegate.swift */; };
 		A18486522B1F7AB600DB91CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18486512B1F7AB600DB91CD /* SceneDelegate.swift */; };
 		A18486542B1F7AB600DB91CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18486532B1F7AB600DB91CD /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 		A184866A2B1F7AB800DB91CD /* burger2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18486692B1F7AB800DB91CD /* burger2Tests.swift */; };
 		A18486742B1F7AB800DB91CD /* burger2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18486732B1F7AB800DB91CD /* burger2UITests.swift */; };
 		A18486762B1F7AB800DB91CD /* burger2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18486752B1F7AB800DB91CD /* burger2UITestsLaunchTests.swift */; };
+		A19FF5232B28B31D00A2D87B /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19FF5222B28B31D00A2D87B /* LevelsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A135FB222B2A058B006FA8B9 /* CazyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CazyCell.swift; sourceTree = "<group>"; };
 		A184864C2B1F7AB600DB91CD /* burger2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = burger2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A184864F2B1F7AB600DB91CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A18486512B1F7AB600DB91CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 		A184866F2B1F7AB800DB91CD /* burger2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = burger2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A18486732B1F7AB800DB91CD /* burger2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = burger2UITests.swift; sourceTree = "<group>"; };
 		A18486752B1F7AB800DB91CD /* burger2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = burger2UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A19FF5222B28B31D00A2D87B /* LevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,8 @@
 				A18486512B1F7AB600DB91CD /* SceneDelegate.swift */,
 				A18486532B1F7AB600DB91CD /* ViewController.swift */,
 				A18486552B1F7AB600DB91CD /* Main.storyboard */,
+				A19FF5222B28B31D00A2D87B /* LevelsViewController.swift */,
+				A135FB222B2A058B006FA8B9 /* CazyCell.swift */,
 				A184865B2B1F7AB800DB91CD /* Assets.xcassets */,
 				A184865D2B1F7AB800DB91CD /* LaunchScreen.storyboard */,
 				A18486602B1F7AB800DB91CD /* Info.plist */,
@@ -261,7 +267,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A135FB232B2A058B006FA8B9 /* CazyCell.swift in Sources */,
 				A18486542B1F7AB600DB91CD /* ViewController.swift in Sources */,
+				A19FF5232B28B31D00A2D87B /* LevelsViewController.swift in Sources */,
 				A184865A2B1F7AB600DB91CD /* burger2.xcdatamodeld in Sources */,
 				A18486502B1F7AB600DB91CD /* AppDelegate.swift in Sources */,
 				A18486522B1F7AB600DB91CD /* SceneDelegate.swift in Sources */,
