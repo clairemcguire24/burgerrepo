@@ -10,7 +10,7 @@ import UIKit
 class AppData{
     static var words = [
         ["compsci","pony","lit","fire", "mid", "cazy"],
-        ["hard", "computer", "jungle",  "idiot", "loser","oblique"],
+        ["difficult", "computer", "jungle",  "idiot", "loser","oblique"],
         ["christmas","stockings","reindeer","mistletoe", "snowflake", "gingerbread"]
     ]
     static var gameswon = 0
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
        // AppData.gamesplayed+=1
         viewCount+=1
-        
+        AppData.currentLevel = defaults.integer(forKey: "theLevel")
         levelsOut.isEnabled = false
         if (AppData.gamesplayed > AppData.words.count/2){
             levelsOut.isEnabled = true
@@ -137,7 +137,7 @@ class ViewController: UIViewController {
     
     @IBAction func reloadAct(_ sender: UIButton) {
         guess=""
-        if (AppData.gameswon == AppData.words.count){
+        if (AppData.gameswon == AppData.words[AppData.currentLevel].count){
             AppData.gameswon = 0
             AppData.gameslost = 0
             AppData.gamesplayed = 0

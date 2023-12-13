@@ -9,6 +9,8 @@ import UIKit
 
 class LevelsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
    
+    var neededlevelpoints = [0,2,3]
+    let defaults = UserDefaults.standard
     
     @IBOutlet weak var collectionOut: UICollectionView!
     
@@ -18,7 +20,9 @@ class LevelsViewController: UIViewController, UICollectionViewDelegate, UICollec
         // Do any additional setup after loading the view.
         collectionOut.delegate = self
         collectionOut.dataSource = self
-        print(AppData.words[AppData.currentLevel][0])
+        
+       
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -34,12 +38,33 @@ class LevelsViewController: UIViewController, UICollectionViewDelegate, UICollec
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if (AppData.gamesplayed>2 && indexPath.row == 1){
+        let alert = UIAlertController(title: "error!", message: "must have \(neededlevelpoints[indexPath.row]) wins to move to this level", preferredStyle: .alert)
+        let okcool = UIAlertAction(title: "ok", style: .default)
+        alert.addAction(okcool)
+        
+        
+        if(indexPath.row == 0){
             AppData.currentLevel = indexPath.row
+            AppData.gamesplayed = 0
+            defaults.set(AppData.currentLevel, forKey: "theLevel")
+
         }
-        if (AppData.gamesplayed>5 && indexPath.row == 2){
+       else if (AppData.gamesplayed>=2 && indexPath.row == 1){
             AppData.currentLevel = indexPath.row
+            AppData.gamesplayed = 0
+           defaults.set(AppData.currentLevel, forKey: "theLevel")
+
+        }
+      else if (AppData.gamesplayed>=3 && indexPath.row == 2){
+            AppData.currentLevel = indexPath.row
+            AppData.gamesplayed = 0
+          defaults.set(AppData.currentLevel, forKey: "theLevel")
+
             }
+        else {
+            present(alert, animated: true, completion: nil)
+            
+        }
         
     }
     
