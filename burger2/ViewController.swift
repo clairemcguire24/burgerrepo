@@ -286,7 +286,13 @@ class ViewController: UIViewController {
                 leftLegOut.isHidden = false
                 guessOut.text = AppData.words[AppData.currentLevel][AppData.gameswon]
                 guessOut.textColor = UIColor.red
-                AppData.gameswon+=1
+                if (AppData.gameswon < 5){
+                    AppData.gameswon+=1
+                    
+                }
+                else {
+                    AppData.gameswon = 0
+                }
                 winLoseOut.text = "you lose"
                 disableButtons()
                 reloadOut.isHidden = false
@@ -308,7 +314,8 @@ class ViewController: UIViewController {
     @IBAction func skip(_ sender: UIButton) {
        guess = ""
        
-        if (AppData.gameswon<5) {  AppData.gameswon+=1
+        if (AppData.gameswon<5) {
+            AppData.gameswon+=1
         }
         else{
             AppData.gameswon = 0
@@ -319,6 +326,41 @@ class ViewController: UIViewController {
            
             }
         guessOut.text = guess
+        correct = [Int]()
+        
+        headOut.isHidden = true
+        bodyOut.isHidden = true
+        rightArmOut.isHidden = true
+        leftArmOut.isHidden = true
+        leftLegOut.isHidden = true
+        rightLegOut.isHidden = true
+        reloadOut.isHidden = true
+        aOut.isEnabled = true
+        bOut.isEnabled = true
+        cOut.isEnabled = true
+        dOut.isEnabled = true
+        eOut.isEnabled = true
+        fOut.isEnabled = true
+        gOut.isEnabled = true
+        hOut.isEnabled = true
+        iOut.isEnabled = true
+        jOut.isEnabled = true
+        kOut.isEnabled = true
+        lOut.isEnabled = true
+        mOut.isEnabled = true
+        nOut.isEnabled = true
+        oOut.isEnabled = true
+        pOut.isEnabled = true
+        qOut.isEnabled = true
+        rOut.isEnabled = true
+        sOut.isEnabled = true
+        tOut.isEnabled = true
+        uOut.isEnabled = true
+        vOut.isEnabled = true
+        wOut.isEnabled = true
+        xOut.isEnabled = true
+        yOut.isEnabled = true
+        zOut.isEnabled = true
         
     }
     

@@ -50,37 +50,62 @@ class LevelsViewController: UIViewController, UICollectionViewDelegate, UICollec
         if(indexPath.row == 0){
             AppData.currentLevel = indexPath.row
             AppData.gamesplayed = 0
+            AppData.gameswon = 0
+            AppData.gameslost = 0
             defaults.set(AppData.currentLevel, forKey: "theLevel")
             present(selected, animated: true, completion: nil)
+            defaults.set(AppData.gamesplayed, forKey: "theWins")
+            defaults.set(AppData.gameswon, forKey: "thePlace")
+            defaults.set(AppData.gameslost, forKey : "theLosses")
 
         }
         else if (AppData.gamesplayed>=2 && indexPath.row == 1){
             AppData.currentLevel = indexPath.row
             AppData.gamesplayed = 0
+            AppData.gameswon = 0
+            AppData.gameslost = 0
            defaults.set(AppData.currentLevel, forKey: "theLevel")
            present(selected, animated: true, completion: nil)
+            defaults.set(AppData.gamesplayed, forKey: "theWins")
+            defaults.set(AppData.gameswon, forKey: "thePlace")
+            defaults.set(AppData.gameslost, forKey : "theLosses")
         }
         
         
        else if (AppData.gamesplayed>=2 && indexPath.row == 2){
             AppData.currentLevel = indexPath.row
             AppData.gamesplayed = 0
+           AppData.gameswon = 0
+           AppData.gameslost = 0
            defaults.set(AppData.currentLevel, forKey: "theLevel")
            present(selected, animated: true, completion: nil)
+           defaults.set(AppData.gamesplayed, forKey: "theWins")
+           defaults.set(AppData.gameswon, forKey: "thePlace")
+           defaults.set(AppData.gameslost, forKey : "theLosses")
 
         }
       else if (AppData.gamesplayed>=3 && indexPath.row == 3){
             AppData.currentLevel = indexPath.row
             AppData.gamesplayed = 0
+          AppData.gameswon = 0
+          AppData.gameslost = 0
           defaults.set(AppData.currentLevel, forKey: "theLevel")
           present(selected, animated: true, completion: nil)
+          defaults.set(AppData.gamesplayed, forKey: "theWins")
+          defaults.set(AppData.gameswon, forKey: "thePlace")
+          defaults.set(AppData.gameslost, forKey : "theLosses")
 
             }
         else if (AppData.gamesplayed>=3 && indexPath.row == 4){
             AppData.currentLevel = indexPath.row
             AppData.gamesplayed = 0
+            AppData.gameswon = 0
+            AppData.gameslost = 0
           defaults.set(AppData.currentLevel, forKey: "theLevel")
           present(selected, animated: true, completion: nil)
+            defaults.set(AppData.gamesplayed, forKey: "theWins")
+            defaults.set(AppData.gameswon, forKey: "thePlace")
+            defaults.set(AppData.gameslost, forKey : "theLosses")
             
         }
         
