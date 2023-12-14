@@ -9,7 +9,7 @@ import UIKit
 
 class LevelsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
    
-    var neededlevelpoints = [0,2,3]
+    var neededlevelpoints = [0,2,2,3,3]
     let defaults = UserDefaults.standard
     
     @IBOutlet weak var collectionOut: UICollectionView!
@@ -43,24 +43,47 @@ class LevelsViewController: UIViewController, UICollectionViewDelegate, UICollec
         alert.addAction(okcool)
         
         
+        let selected = UIAlertController(title: "", message: "\(AppData.words[indexPath.row][0]) level selected", preferredStyle: .alert)
+        let dubski = UIAlertAction(title: "ok", style: .default)
+        selected.addAction(dubski)
+        
         if(indexPath.row == 0){
             AppData.currentLevel = indexPath.row
             AppData.gamesplayed = 0
             defaults.set(AppData.currentLevel, forKey: "theLevel")
+            present(selected, animated: true, completion: nil)
 
         }
-       else if (AppData.gamesplayed>=2 && indexPath.row == 1){
+        else if (AppData.gamesplayed>=2 && indexPath.row == 1){
             AppData.currentLevel = indexPath.row
             AppData.gamesplayed = 0
            defaults.set(AppData.currentLevel, forKey: "theLevel")
+           present(selected, animated: true, completion: nil)
+        }
+        
+        
+       else if (AppData.gamesplayed>=2 && indexPath.row == 2){
+            AppData.currentLevel = indexPath.row
+            AppData.gamesplayed = 0
+           defaults.set(AppData.currentLevel, forKey: "theLevel")
+           present(selected, animated: true, completion: nil)
 
         }
-      else if (AppData.gamesplayed>=3 && indexPath.row == 2){
+      else if (AppData.gamesplayed>=3 && indexPath.row == 3){
             AppData.currentLevel = indexPath.row
             AppData.gamesplayed = 0
           defaults.set(AppData.currentLevel, forKey: "theLevel")
+          present(selected, animated: true, completion: nil)
 
             }
+        else if (AppData.gamesplayed>=3 && indexPath.row == 4){
+            AppData.currentLevel = indexPath.row
+            AppData.gamesplayed = 0
+          defaults.set(AppData.currentLevel, forKey: "theLevel")
+          present(selected, animated: true, completion: nil)
+            
+        }
+        
         else {
             present(alert, animated: true, completion: nil)
             

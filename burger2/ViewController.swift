@@ -10,8 +10,11 @@ import UIKit
 class AppData{
     static var words = [
         ["compsci","pony","lit","fire", "mid", "cazy"],
+        ["farm", "pig", "chicken", "mud", "cows", "barn"],
         ["difficult", "computer", "jungle",  "idiot", "loser","oblique"],
-        ["christmas","stockings","reindeer","mistletoe", "snowflake", "gingerbread"]
+        ["christmas","stockings","reindeer","mistletoe", "snowflake", "gingerbread"],
+        ["burger","lettuce","tomato","mustard","natalie","mayonnaise"],
+        
     ]
     static var gameswon = 0
     static var gamesplayed = 0
@@ -114,9 +117,12 @@ class ViewController: UIViewController {
                 
             }
             guessOut.text = guess
+            winLabel.text = "wins:  \(AppData.gamesplayed)"
+            lossLable.text = "losses: \(AppData.gameslost)"
         }
         
     }
+
     func win(){
         if (guess == AppData.words[AppData.currentLevel][AppData.gameswon]){
             AppData.gameswon+=1
@@ -297,7 +303,25 @@ class ViewController: UIViewController {
         
     }
     
-   
+    
+    
+    @IBAction func skip(_ sender: UIButton) {
+       guess = ""
+       
+        if (AppData.gameswon<5) {  AppData.gameswon+=1
+        }
+        else{
+            AppData.gameswon = 0
+        }
+        
+        for x in 0..<AppData.words[AppData.currentLevel][AppData.gameswon].count {
+            guess+="_ "
+           
+            }
+        guessOut.text = guess
+        
+    }
+    
     
     @IBAction func aAct(_ sender: UIButton) {
         checkLetters(letter: "a")
