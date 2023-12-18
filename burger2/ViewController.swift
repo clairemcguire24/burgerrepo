@@ -4,16 +4,19 @@
 //
 //  Created by CLAIRE MCGUIRE on 12/5/23.
 //
+//programming components: variables, operators, if/else, loops, arrays, functions, safely unwrapping (with persitance statements), persistance
+//UI Elements: button, label, stackview, imageview, collectionview, navigation controller, constraints, app icon.
+
 
 import UIKit
 
 class AppData{
     static var words = [
-        ["compsci","pony","lit","fire", "mid", "cazy"],
-        ["farm", "pig", "chicken", "mud", "cows", "barn"],
-        ["difficult", "computer", "jungle",  "idiot", "loser","oblique"],
-        ["christmas","stockings","reindeer","mistletoe", "snowflake", "gingerbread"],
-        ["burger","lettuce","tomato","mustard","natalie","mayonnaise"],
+        ["compsci","pony","lit","fire", "mid", "trash","cazy","duck","sprint","scrum","seaver","contexto","enum","array","github"],
+        ["farm", "pig", "chicken", "mud", "cows", "eggs","seed","silo",  "barn","hay","horse","fields","corn","tractor","cattle"],
+        ["difficult", "computer", "jungle",  "idiot", "loser","oblique","quaint", "tranquil","precedented","inconspicuous","resilience","reconcile","tenacious","ambivalent","conundrum"],
+        ["christmas","jolly","santa","sleigh","carol", "eggnog", "wreath", "jingle","tradition", "stockings","reindeer","mistletoe", "snowflake", "gingerbread","nativity",],
+        ["burger", "patty","bun", "king", "bacon", "fries", "cheese", "grill", "ketchup", "lettuce","tomato","mustard","natalie","mayonnaise", "condiments"],
         
     ]
     static var gameswon = 0
@@ -24,7 +27,7 @@ class AppData{
 
 class ViewController: UIViewController {
     var guess = ""
-    //var word = "pony"
+    
     var incorrectGuesses = 0
     var greg : [UIImage] = []
    var viewCount = 0
@@ -78,6 +81,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var winLoseOut: UILabel!
     @IBOutlet weak var reloadOut: UIButton!
     
+    @IBOutlet weak var skipOut: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -90,6 +95,7 @@ class ViewController: UIViewController {
         }
         lossLable.text = "losses: \(AppData.gameslost)"
         winLabel.text = "wins: \(AppData.gamesplayed)"
+        winLoseOut.text = "\(AppData.words[AppData.currentLevel][0]) level"
         
         headOut.isHidden = true
         bodyOut.isHidden = true
@@ -103,6 +109,7 @@ class ViewController: UIViewController {
         AppData.gamesplayed = defaults.integer(forKey: "theWins")
         AppData.gameslost = defaults.integer(forKey: "theLosses")
        
+        
         for x in 0..<AppData.words[AppData.currentLevel][AppData.gameswon].count {
             guess+="_ "
            
@@ -119,19 +126,28 @@ class ViewController: UIViewController {
             guessOut.text = guess
             winLabel.text = "wins:  \(AppData.gamesplayed)"
             lossLable.text = "losses: \(AppData.gameslost)"
+            winLoseOut.text = "\(AppData.words[AppData.currentLevel][0]) level"
         }
         
     }
 
     func win(){
+        
+        
         if (guess == AppData.words[AppData.currentLevel][AppData.gameswon]){
-            AppData.gameswon+=1
+            if (AppData.gameswon<14){
+                AppData.gameswon+=1
+            }
+            else{
+                AppData.gameswon = 0
+            }
             winLoseOut.text = "you win!"
             reloadOut.isHidden = false
             AppData.gamesplayed+=1
             winLabel.text = "wins: \(AppData.gamesplayed)"
             defaults.set(AppData.gamesplayed, forKey: "theWins")
             disableButtons()
+            skipOut.isEnabled = false
             if (AppData.gamesplayed > AppData.words.count/2){
                 levelsOut.isEnabled = true
             }
@@ -155,10 +171,11 @@ class ViewController: UIViewController {
             guess+="_ "
            
             }
-        winLoseOut.text = ""
+        winLoseOut.text = "\(AppData.words[AppData.currentLevel][0]) level"
         guessOut.text = guess
         incorrectGuesses = 0
         guessOut.textColor = UIColor.black
+        skipOut.isEnabled = true
         
         headOut.isHidden = true
         bodyOut.isHidden = true
@@ -286,7 +303,7 @@ class ViewController: UIViewController {
                 leftLegOut.isHidden = false
                 guessOut.text = AppData.words[AppData.currentLevel][AppData.gameswon]
                 guessOut.textColor = UIColor.red
-                if (AppData.gameswon < 5){
+                if (AppData.gameswon < 14 ){
                     AppData.gameswon+=1
                     
                 }
@@ -299,6 +316,7 @@ class ViewController: UIViewController {
                 AppData.gameslost+=1
                 lossLable.text = "losses: \(AppData.gameslost)"
                 defaults.set(AppData.gameslost, forKey: "theLosses")
+                skipOut.isEnabled = false
             }
             else {
                 guessOut.text = "game over idiot"
@@ -314,19 +332,22 @@ class ViewController: UIViewController {
     @IBAction func skip(_ sender: UIButton) {
        guess = ""
        
-        if (AppData.gameswon<5) {
+        if (AppData.gameswon < 14) {
             AppData.gameswon+=1
         }
-        else{
+        else {
             AppData.gameswon = 0
         }
-        
         for x in 0..<AppData.words[AppData.currentLevel][AppData.gameswon].count {
             guess+="_ "
            
             }
+        //HEY!!!
+       
         guessOut.text = guess
+        
         correct = [Int]()
+        winLoseOut.text = "\(AppData.words[AppData.currentLevel][0]) level"
         
         headOut.isHidden = true
         bodyOut.isHidden = true

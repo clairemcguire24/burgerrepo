@@ -375,6 +375,7 @@
                         <outlet property="rightArmOut" destination="PyZ-u5-0QK" id="xqh-Tm-XpP"/>
                         <outlet property="rightLegOut" destination="aj0-ZJ-lNj" id="fdt-Wi-uQK"/>
                         <outlet property="sOut" destination="Q6M-ge-dqf" id="Anh-dU-cfo"/>
+                        <outlet property="skipOut" destination="Y3t-Z4-QtM" id="aLx-2P-Mz5"/>
                         <outlet property="tOut" destination="QJc-9c-6Oe" id="nQn-jD-73L"/>
                         <outlet property="uOut" destination="lrq-Ri-eNI" id="wCe-wo-vdj"/>
                         <outlet property="vOut" destination="g4c-rE-Zdf" id="Feb-sw-qc6"/>
